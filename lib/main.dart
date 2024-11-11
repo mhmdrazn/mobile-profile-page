@@ -35,6 +35,7 @@ class ProfilePage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
+        surfaceTintColor: Colors.transparent,
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -95,7 +96,7 @@ class ProfilePage extends StatelessWidget {
                                     _buildStatColumn('812', 'Following'),
                                   ],
                                 ),
-                                const SizedBox(height: 4),
+                                const SizedBox(height: 8),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
@@ -147,22 +148,17 @@ class ProfilePage extends StatelessWidget {
                       const SizedBox(height: 12),
 
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Wrap(
-                            spacing: 8, // Adjust spacing between chips
-                            children: [
-                              _chip('Instagram'),
-                              _chip('Behance'),
-                              _chip('LinkedIn'),
-                              Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(width: 0.75, color: gray1), 
-                                  borderRadius: BorderRadius.circular(24.0)),
-                                padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 6),
-                                child: Image.network('assets/icon/share.png', height: 15, width: 15),
-                              ),
-                            ],
+                          _chip('Instagram'),
+                          _chip('Behance'),
+                          _chip('LinkedIn'),
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(width: 0.75, color: gray1), 
+                              borderRadius: BorderRadius.circular(24.0)),
+                            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 6),
+                            child: Image.network('assets/icon/share.png', height: 15, width: 15),
                           ),
                         ],
                       )
@@ -203,7 +199,7 @@ class ProfilePage extends StatelessWidget {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(20), // Image border
                               child: SizedBox.fromSize(
-                                size: Size.fromRadius(28), // Image radius
+                                size: const Size.fromRadius(28), // Image radius
                                 child: Image.network('assets/images/its.png', fit: BoxFit.cover),
                               ),
                             ),
@@ -213,7 +209,9 @@ class ProfilePage extends StatelessWidget {
                               children: [
                                 Text('Institut Teknologi Sepuluh Nopember', style: medium14.copyWith(color: black)), 
                                 const SizedBox(height: 4),
-                                Text('20223 - 2027 (Expected)', style: regular12.copyWith(color: gray1))
+                                Text('Information Systems', style: regular12.copyWith(color: gray1)),
+                                const SizedBox(height: 4),
+                                Text('2023 - 2027 (Expected)', style: regular12.copyWith(color: gray2))
                               ],
                             )
                           ],
@@ -318,8 +316,8 @@ class ProfilePage extends StatelessWidget {
                                   imageUrls[index],
                                   fit: BoxFit.cover, // Agar gambar tetap pas di dalam grid
                                 ),
-                              ),  
-                            ); 
+                              ),
+                            );
                           },
                         ),
                       ],
@@ -385,7 +383,7 @@ class ProfilePage extends StatelessWidget {
       ),
       padding: const EdgeInsets.symmetric(
         vertical: 4, 
-        horizontal: 16
+        horizontal: 12
       ),
       child: Text(
         text,

@@ -21,10 +21,10 @@ class MyApp extends StatelessWidget {
 class ProfilePage extends StatelessWidget {
 
   final List<String> imageUrls = [
-    'images/ise24.png',
-    'images/razan.png',
-    'images/tedxits.jpg',
-    'images/ilits2024.jpg',
+    'assets/images/ise24.png',
+    'assets/images/razan.png',
+    'assets/images/tedxits.jpg',
+    'assets/images/ilits2024.jpg',
   ];
 
   @override
@@ -81,7 +81,7 @@ class ProfilePage extends StatelessWidget {
                         children: [
                           const CircleAvatar(
                             radius: 45,
-                            backgroundImage: NetworkImage('assets/images/profile-pict.png')
+                            backgroundImage: AssetImage('assets/images/profile-pict.png')
                           ),
                           const SizedBox(width: 24),
                           Expanded(
@@ -158,7 +158,7 @@ class ProfilePage extends StatelessWidget {
                               border: Border.all(width: 0.75, color: gray1), 
                               borderRadius: BorderRadius.circular(24.0)),
                             padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 6),
-                            child: Image.network('assets/icon/share.png', height: 15, width: 15),
+                            child: Image.asset('assets/icon/share.png', height: 15, width: 15),
                           ),
                         ],
                       )
@@ -200,7 +200,7 @@ class ProfilePage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20), // Image border
                               child: SizedBox.fromSize(
                                 size: const Size.fromRadius(28), // Image radius
-                                child: Image.network('assets/images/its.png', fit: BoxFit.cover),
+                                child: Image.asset('assets/images/its.png', fit: BoxFit.cover),
                               ),
                             ),
                             const SizedBox(width: 16),
@@ -253,7 +253,7 @@ class ProfilePage extends StatelessWidget {
                           children: [
                             const CircleAvatar(
                               radius: 24,
-                              backgroundImage: NetworkImage('assets/images/sleep.png'),
+                              backgroundImage: AssetImage('assets/images/sleep.png'),
                               backgroundColor: Colors.white,
                             ),
                             const SizedBox(width: 24),
@@ -350,24 +350,24 @@ class ProfilePage extends StatelessWidget {
 }
 
   Widget _buildButton(String text, Color color, {Color borderColor = Colors.transparent}) {
-  return ElevatedButton(
-    onPressed: () {},
-    style: ElevatedButton.styleFrom(
-      backgroundColor: color,
-      foregroundColor: color == Colors.white ? Colors.blue : Colors.white,
-      padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 28), // Minimal vertical, responsive horizontal padding
-      minimumSize: const Size(0, 36), // Ensures consistent height without extra vertical padding
-      side: BorderSide(color: borderColor, width: 1), // Border width for outline style
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8), // Rounded corners
+    return ElevatedButton(
+      onPressed: () {},
+      style: ElevatedButton.styleFrom(
+        backgroundColor: color,
+        foregroundColor: color == Colors.white ? Colors.blue : Colors.white,
+        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16), // Minimal vertical, responsive horizontal padding
+        minimumSize: const Size(0, 36), // Ensures consistent height without extra vertical padding
+        side: BorderSide(color: borderColor, width: 1), // Border width for outline style
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8), // Rounded corners
+        ),
       ),
-    ),
-    child: Text(
-      text,
-      style: regular12.copyWith(color: color == Colors.white ? Colors.blue : Colors.white),
-    ),
-  );
-}
+      child: Text(
+        text,
+        style: regular12.copyWith(color: color == Colors.white ? Colors.blue : Colors.white),
+      ),
+    );
+  }
 
 
   Widget _chip(String text){

@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "My Profile",
       debugShowCheckedModeBanner: false,
       home: ProfilePage(),
@@ -19,7 +19,13 @@ class MyApp extends StatelessWidget {
 }
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+
+  final List<String> imageUrls = [
+    'images/ise24.png',
+    'images/razan.png',
+    'images/tedxits.jpg',
+    'images/ilits2024.jpg',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +52,7 @@ class ProfilePage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 16.0, left: 20.0, right: 20.0, ),
+          padding: const EdgeInsets.only(top: 16.0, left: 20.0, right: 20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -74,11 +80,12 @@ class ProfilePage extends StatelessWidget {
                         children: [
                           const CircleAvatar(
                             radius: 45,
-                            backgroundImage: AssetImage('assets/images/profile-pict.png'),
+                            backgroundImage: NetworkImage('assets/images/profile-pict.png')
                           ),
                           const SizedBox(width: 24),
                           Expanded(
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Row (
                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -88,9 +95,9 @@ class ProfilePage extends StatelessWidget {
                                     _buildStatColumn('812', 'Following'),
                                   ],
                                 ),
-                                const SizedBox(height: 12),
+                                const SizedBox(height: 4),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
                                     _buildButton('Connect', blue),
                                     _buildButton('Message', white, borderColor: blue),
@@ -101,7 +108,7 @@ class ProfilePage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 16),
 
                       //Nama dan deskripsi
                       Column(
@@ -111,14 +118,17 @@ class ProfilePage extends StatelessWidget {
                             'Muhammad Razan Parisya Putra',
                             style: bold14,
                           ),
+                          const SizedBox(height: 1),
                           Text(
                             'Undergraduate Information System Student @ITS',
                             style: regular12.copyWith(color: gray2),
                           ),
+                          const SizedBox(height: 1),
                           Text(
                             '5026231174  - Teknologi Berkembang (D)',
                             style: regular14,
                           ),
+                          const SizedBox(height: 1),
                           Row(
                             children: [
                               // Image.asset('assets/icon/icon.png'),
@@ -134,14 +144,26 @@ class ProfilePage extends StatelessWidget {
                         ],
                       ),
 
-                      const SizedBox(height: 24),
+                      const SizedBox(height: 12),
 
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          _chip('Medium'),
-                          _chip('Instagram'),
-                          _chip('LinkedIn'),
+                          Wrap(
+                            spacing: 8, // Adjust spacing between chips
+                            children: [
+                              _chip('Instagram'),
+                              _chip('Behance'),
+                              _chip('LinkedIn'),
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(width: 0.75, color: gray1), 
+                                  borderRadius: BorderRadius.circular(24.0)),
+                                padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 6),
+                                child: Image.network('assets/icon/share.png', height: 15, width: 15),
+                              ),
+                            ],
+                          ),
                         ],
                       )
                     ],
@@ -175,18 +197,21 @@ class ProfilePage extends StatelessWidget {
                             Text('Education', style: bold16),
                           ],
                         ),
-                        const SizedBox(height: 16),
+                        const SizedBox(height: 12),
                         Row(
                           children: [
-                            const CircleAvatar(
-                              radius: 28,
-                              backgroundImage: AssetImage('assets/images/logo-its.png'),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(20), // Image border
+                              child: SizedBox.fromSize(
+                                size: Size.fromRadius(28), // Image radius
+                                child: Image.network('assets/images/its.png', fit: BoxFit.cover),
+                              ),
                             ),
                             const SizedBox(width: 16),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Institut Teknologi Sepuluh Nopember', style: medium14.copyWith(color: black),),
+                                Text('Institut Teknologi Sepuluh Nopember', style: medium14.copyWith(color: black)), 
                                 const SizedBox(height: 4),
                                 Text('20223 - 2027 (Expected)', style: regular12.copyWith(color: gray1))
                               ],
@@ -221,7 +246,7 @@ class ProfilePage extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Text('Funfact 🎉', style: bold16),
+                            Text('Funfact', style: bold16),
                           ],
                         ),
                         const SizedBox(height: 16),
@@ -229,13 +254,14 @@ class ProfilePage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const CircleAvatar(
-                              radius: 28,
-                              backgroundImage: AssetImage('assets/images/logo-its.png'),
+                              radius: 24,
+                              backgroundImage: NetworkImage('assets/images/sleep.png'),
+                              backgroundColor: Colors.white,
                             ),
-                            const SizedBox(width: 16),
+                            const SizedBox(width: 24),
                             Expanded(
                               child: Text(
-                                'Suka bangun pagi cuma buat matiin alarm terus lanjut tidur lagi.',
+                                'Suka bangun pagi cuma buat matiin\nalarm terus lanjut tidur lagi.',
                                 style: regular14,
                               ) 
                             ) 
@@ -246,6 +272,62 @@ class ProfilePage extends StatelessWidget {
                 ),
               ), 
 
+              const SizedBox(height: 20),
+
+              // Gallery
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.075),
+                      spreadRadius: 0,
+                      blurRadius: 10,
+                      offset: Offset(0, 0), 
+                    ),
+                  ],
+                ),
+                
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text('Gallery', style: bold16),
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                        GridView.builder(
+                          shrinkWrap: true, // Agar grid tidak mengambil ruang penuh
+                          physics:
+                              const NeverScrollableScrollPhysics(), // Non-scrollable grid
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2, // 2 kolom
+                            crossAxisSpacing: 16, // Jarak antar kolom
+                            mainAxisSpacing: 16, // Jarak antar baris
+                          ),
+                          itemCount: imageUrls.length,
+                          itemBuilder: (context, index) {
+                            return ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: SizedBox.fromSize(
+                                size: Size.fromRadius(74),
+                                child: Image.asset(
+                                  imageUrls[index],
+                                  fit: BoxFit.cover, // Agar gambar tetap pas di dalam grid
+                                ),
+                              ),  
+                            ); 
+                          },
+                        ),
+                      ],
+                  ),
+                ),
+              ),
+            
+              const SizedBox(height: 32),
             ],
           ),
         ),
@@ -262,31 +344,33 @@ class ProfilePage extends StatelessWidget {
         ),
         Text(
           label,
-          style: regular12.copyWith(color: gray1),
+          style: regular10.copyWith(color: gray1),
         ),
       ],
     );
   }
 }
 
-  Widget _buildButton(String text, Color color, {Color borderColor = Colors.transparent}){
-    return ElevatedButton(
-      onPressed: () {}, 
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color,
-        foregroundColor: color == Colors.white ? Colors.blue : Colors.white,
-        padding: const EdgeInsets.symmetric(vertical: 6),
-        side: BorderSide(color: borderColor),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+  Widget _buildButton(String text, Color color, {Color borderColor = Colors.transparent}) {
+  return ElevatedButton(
+    onPressed: () {},
+    style: ElevatedButton.styleFrom(
+      backgroundColor: color,
+      foregroundColor: color == Colors.white ? Colors.blue : Colors.white,
+      padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 28), // Minimal vertical, responsive horizontal padding
+      minimumSize: const Size(0, 36), // Ensures consistent height without extra vertical padding
+      side: BorderSide(color: borderColor, width: 1), // Border width for outline style
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8), // Rounded corners
       ),
-      child: Text(
-        text,
-        style: regular12,
-      )
-    );
-  }
+    ),
+    child: Text(
+      text,
+      style: regular12.copyWith(color: color == Colors.white ? Colors.blue : Colors.white),
+    ),
+  );
+}
+
 
   Widget _chip(String text){
     return Container(
@@ -305,7 +389,7 @@ class ProfilePage extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: regular12.copyWith(
+        style: regular14.copyWith(
           color: gray1
         ),
       ),

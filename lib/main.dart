@@ -200,7 +200,7 @@ class ProfilePage extends StatelessWidget {
                                 child: Image.asset('assets/images/its.png', fit: BoxFit.cover),
                               ),
                             ),
-                            const SizedBox(width: 16),
+                            const SizedBox(width: 10),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [

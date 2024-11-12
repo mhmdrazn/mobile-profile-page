@@ -206,7 +206,7 @@ class ProfilePage extends StatelessWidget {
                               children: [
                                 Text('Institut Teknologi Sepuluh Nopember', style: medium14.copyWith(color: black)), 
                                 const SizedBox(height: 4),
-                                Text('Information Systems', style: regular12.copyWith(color: gray1)),
+                                Text('Information Systems', style: regular14.copyWith(color: gray1)),
                                 const SizedBox(height: 4),
                                 Text('2023 - 2027 (Expected)', style: regular12.copyWith(color: gray2))
                               ],

@@ -36,18 +36,15 @@ class ProfilePage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         surfaceTintColor: Colors.transparent,
-        title: const Row(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'mhmdrazn',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              style: bold16,
             ),
-            SizedBox(width: 4),
-            Icon(Icons.verified, color: Colors.blue, size: 14),
+            const SizedBox(width: 4),
+            const Icon(Icons.verified, color: Colors.blue, size: 14),
           ],
         ),
       ),
@@ -57,7 +54,7 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Profile Section
+              // Section Profile
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -169,7 +166,7 @@ class ProfilePage extends StatelessWidget {
               
               const SizedBox(height: 20),
 
-              // Education
+              // Section Education
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -223,7 +220,7 @@ class ProfilePage extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              // Funfact
+              // Section Funfact
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -259,7 +256,7 @@ class ProfilePage extends StatelessWidget {
                             const SizedBox(width: 24),
                             Expanded(
                               child: Text(
-                                'Suka bangun pagi cuma buat matiin\nalarm terus lanjut tidur lagi.',
+                                'Suka bangun pagi cuma buat matiin alarm terus lanjut tidur lagi.',
                                 style: regular14,
                               ) 
                             ) 
@@ -272,7 +269,7 @@ class ProfilePage extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              // Gallery
+              // Section Gallery
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -298,14 +295,13 @@ class ProfilePage extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         GridView.builder(
-                          shrinkWrap: true, // Agar grid tidak mengambil ruang penuh
-                          physics:
-                              const NeverScrollableScrollPhysics(), // Non-scrollable grid
+                          physics: const NeverScrollableScrollPhysics(), 
                           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, // 2 kolom
-                            crossAxisSpacing: 16, // Jarak antar kolom
-                            mainAxisSpacing: 16, // Jarak antar baris
+                            crossAxisCount: 2, // jumlah kolom
+                            crossAxisSpacing: 16, // space antar kolom
+                            mainAxisSpacing: 16, // space antar baris
                           ),
+                          shrinkWrap: true, // agar tidak penuh
                           itemCount: imageUrls.length,
                           itemBuilder: (context, index) {
                             return ClipRRect(
@@ -314,7 +310,7 @@ class ProfilePage extends StatelessWidget {
                                 size: Size.fromRadius(74),
                                 child: Image.asset(
                                   imageUrls[index],
-                                  fit: BoxFit.cover, // Agar gambar tetap pas di dalam grid
+                                  fit: BoxFit.cover, // foto akan menyesuaikan ukuran grid
                                 ),
                               ),
                             );
@@ -332,64 +328,55 @@ class ProfilePage extends StatelessWidget {
       ),
     );
   }
-
-  Widget _buildStatColumn(String value, String label) {
-    return Column(
-      children: [
-        Text(
-          value,
-          style: bold16.copyWith(color: black),
-        ),
-        Text(
-          label,
-          style: regular10.copyWith(color: gray1),
-        ),
-      ],
-    );
-  }
 }
 
-  Widget _buildButton(String text, Color color, {Color borderColor = Colors.transparent}) {
-    return ElevatedButton(
-      onPressed: () {},
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color,
-        foregroundColor: color == Colors.white ? Colors.blue : Colors.white,
-        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16), // Minimal vertical, responsive horizontal padding
-        minimumSize: const Size(0, 36), // Ensures consistent height without extra vertical padding
-        side: BorderSide(color: borderColor, width: 1), // Border width for outline style
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8), // Rounded corners
-        ),
+Widget _buildStatColumn(String value, String label) {
+  return Column(
+    children: [
+      Text(
+        value,
+        style: bold16.copyWith(color: black),
       ),
-      child: Text(
-        text,
-        style: regular12.copyWith(color: color == Colors.white ? Colors.blue : Colors.white),
+      Text(
+        label,
+        style: regular10.copyWith(color: gray1),
       ),
-    );
-  }
+    ],
+  );
+}
+
+Widget _buildButton(String text, Color color, {Color borderColor = Colors.transparent}) {
+  return ElevatedButton(
+    onPressed: () {},
+    style: ElevatedButton.styleFrom(
+      backgroundColor: color,
+      foregroundColor: color == Colors.white ? Colors.blue : Colors.white,
+      padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 16), // padding vertikal dan horizontal 
+      minimumSize: const Size(0, 36), // set minimum size agar konsisten
+      side: BorderSide(color: borderColor, width: 1), // ketebalan border outline
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8), // Rounded corners
+      ),
+    ),
+    child: Text(
+      text,
+      style: regular12.copyWith(color: color == Colors.white ? Colors.blue : Colors.white),
+    ),
+  );
+}
 
 
-  Widget _chip(String text){
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          width: 0.75,
-          color: gray1,
-        ), 
-        borderRadius: BorderRadius.circular(
-          24.0
-        ),
-      ),
-      padding: const EdgeInsets.symmetric(
-        vertical: 4, 
-        horizontal: 12
-      ),
-      child: Text(
-        text,
-        style: regular14.copyWith(
-          color: gray1
-        ),
-      ),
-    );
-  }
+Widget _chip(String text){
+  return Container(
+    decoration: BoxDecoration(
+      border: Border.all(width: 0.75, color: gray1), // ketebalan outline dan warna
+      borderRadius: BorderRadius.circular(24.0),
+    ),
+    padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12), // padding vertikal dan horizontal
+    child: Text(
+      text,
+      style: regular14.copyWith(color: gray1), // style text
+    ),
+  );
+}
+
